@@ -1,22 +1,46 @@
-# Files Manager API
-This repository contains an API for a files manager developed with Node.js, that enables user authentication, temporary storage with Redis, creation of image thumbnails, and storage of file information using MongoDB. This collaborative project was developed by Calvin Mwangi.
+# Files Manager
 
-Features
-The Files Manager API provides the following features:
+A simple file management API built with Express, MongoDB, Redis, Bull, and Node.js.
 
-User Authentication: The API supports user authentication, allowing users to securely access their files and manage them through appropriate authorization mechanisms.
+## Requirements
 
-Temporary Storage with Redis: The API utilizes Redis as a temporary storage solution, for storage of access tokens created upon authorisation for accessing endpoints without the need to log in every time.
+### Applications
 
-Creation of Image Thumbnails: The API incorporates functionality to generate image thumbnails. When a user uploads an image file, the API automatically generates a thumbnail version using a worker process and queing system, facilitating faster rendering and improved user experience.
++ Node.js
++ Yarn (the package manager/resource negotiator)
 
-Storage of File Information using MongoDB: The API leverages MongoDB as a database to store file information. This allows for efficient querying, indexing, and retrieval of file-related data, ensuring seamless management and organization of files.
+### APIs
 
-# Installation
-To set up the File Manager API on your local environment, please follow these steps:
++ A Google API should be created with at least an email sending scope and a valid URL (e.g.; `http://localhost:5000/`) should be one of the redirect URIs. The `credentials.json` file should be stored in the root directory of this project.
 
-1. Clone this repository to your local machine using the following command: `git clone https://github.com/uno36/alx-files_manager`.
+### Environment Variables
 
-2. Install the required dependencies by running the following command in the project's root directory: `npm install`.
+The required environment variables should be stored in a file named `.env` and each line should have the format `Name=Value`. The table below lists the environment variables that will be used by this server:
 
-3. Start the server and worker in two different terminals using `npm run start-server` and `npm run start-worker`.
+| Name | Required | Description |
+|:-|:-|:-|
+| GOOGLE_MAIL_SENDER | Yes | The email address of the account responsible for sending emails to users. |
+| PORT | No (Default: `5000`)| The port the server should listen at. |
+| DB_HOST | No (Default: `localhost`)| The database host. |
+| DB_PORT | No (Default: `27017`)| The database port. |
+| DB_DATABASE | No (Default: `files_manager`)| The database name. |
+| FOLDER_PATH | No (Default: `/tmp/files_manager` (Linux, Mac OS X) & `%TEMP%/files_manager` (Windows)) | The local folder where files are saved. |
+
+## Installation
+
++ Clone this repository and switch to the cloned repository's directory.
++ Install the packages using `yarn install` or `npm install`.
+
+## Usage
+
+Start the Redis and MongoDB services on your system and run `yarn start-server` or `npm run start-server`.
+
+## Tests
+
++ Create a separate `.env` file for the tests named `.env.test` and store the value of the environment variables for the testing event in it.
++ Run `yarn test` or `npm run test` to execute the E2E tests.
+
+## Authors
+
++ Emmanuel Tofa
+
